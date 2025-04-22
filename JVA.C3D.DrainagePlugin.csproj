@@ -1,30 +1,70 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <OutputType>Library</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="AcCoreMgd">
-      <HintPath>..\Civil3D2025\AcCoreMgd.dll</HintPath>
-      <Private>false</Private>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>9</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>00020813-0000-0000-c000-000000000046</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="accoremgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcCoreMgd.dll</HintPath>
     </Reference>
-    <Reference Include="AcDbMgd">
-      <HintPath>..\Civil3D2025\AcDbMgd.dll</HintPath>
-      <Private>false</Private>
+    <Reference Include="AcCui">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcCui.dll</HintPath>
     </Reference>
-    <Reference Include="AcMgd">
-      <HintPath>..\Civil3D2025\AcMgd.dll</HintPath>
-      <Private>false</Private>
+    <Reference Include="Acdbmgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcDbMgd.dll</HintPath>
     </Reference>
-    <Reference Include="AeccDbMgd">
-      <HintPath>..\Civil3D2025\AeccDbMgd.dll</HintPath>
-      <Private>false</Private>
+    <Reference Include="acdbmgdbrep">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\acdbmgdbrep.dll</HintPath>
     </Reference>
-    <Reference Include="AeccLandMgd">
-      <HintPath>..\Civil3D2025\AeccLandMgd.dll</HintPath>
-      <Private>false</Private>
+    <Reference Include="AcDx">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcDx.dll</HintPath>
+    </Reference>
+    <Reference Include="acmgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcMgd.dll</HintPath>
+    </Reference>
+    <Reference Include="AcMr">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcMr.dll</HintPath>
+    </Reference>
+    <Reference Include="AcSeamless">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcSeamless.dll</HintPath>
+    </Reference>
+    <Reference Include="AcTcMgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcTcMgd.dll</HintPath>
+    </Reference>
+    <Reference Include="AcWindows">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AcWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="AdUIMgd">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AdUIMgd.dll</HintPath>
+    </Reference>
+    <Reference Include="AdUiPalettes">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AdUiPalettes.dll</HintPath>
+    </Reference>
+    <Reference Include="AdWindows">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc\AdWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc-x64\Autodesk.AutoCAD.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop.Common">
+      <HintPath>..\..\..\..\..\..\ObjectARX 2025\inc-x64\Autodesk.AutoCAD.Interop.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
+
 </Project>
