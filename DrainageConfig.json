@@ -1,0 +1,22 @@
+{
+  "ProjectName": "Colorado Site Development",
+  "Designer": "",
+  "MunicipalityStandard": "Mile High Flood District",
+  "ManningsNValues": {
+    "RCP": 0.013,
+    "CONCRETE": 0.013,
+    "PVC": 0.010,
+    "HDPE": 0.012,
+    "CMP": 0.024,
+    "STEEL": 0.012,
+    "DEFAULT": 0.013
+  },
+  "DefaultEntranceLoss": 0.5,
+  "DefaultExitLoss": 1.0,
+  "DefaultMaxPondedDepth": 1.0,
+  "DefaultPondedArea": 0.0,
+  "DefaultLandXmlPath": "",
+  "DefaultExcelOutputPath": "",
+  "AutoOpenExcelAfterExport": true,
+  "ShowDetailedMessages": true
+}
