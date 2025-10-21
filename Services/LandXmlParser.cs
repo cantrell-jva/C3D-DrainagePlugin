@@ -97,8 +97,11 @@ namespace JVA.C3D.DrainagePlugin.Services
                     structure.SumpElevation = ParseDouble(sumpElev);
                 }
 
-                // Determine structure type from name or description
-                structure.Type = DetermineStructureType(structure.Name, structure.Description);
+                // Check if structure has rectangular shape - if so, it's a catch basin
+                bool isRectangular = IsRectangularStructure(structElem);
+
+                // Determine structure type from shape, name, or description
+                structure.Type = DetermineStructureType(structure.Name, structure.Description, isRectangular);
                 structure.Label = structure.Name;
 
                 // Default StormCAD values (can be customized based on Mile High standards)
@@ -186,11 +189,49 @@ namespace JVA.C3D.DrainagePlugin.Services
             }
         }
 
-        private string DetermineStructureType(string name, string description)
+        /// <summary>
+        /// Check if a structure has a rectangular shape in the LandXML
+        /// </summary>
+        private bool IsRectangularStructure(XElement structElem)
+        {
+            // Check for RectStruct element (rectangular structure shape)
+            var rectStruct = structElem.Element(ns + "RectStruct");
+            if (rectStruct != null)
+                return true;
+
+            // Check for shape attribute indicating rectangular
+            var shape = structElem.Attribute("shape")?.Value?.ToUpper();
+            if (shape != null && (shape.Contains("RECT") || shape.Contains("SQUARE") || shape.Contains("BOX")))
+                return true;
+
+            // Check for length/width attributes (indicates rectangular)
+            var length = structElem.Attribute("length")?.Value;
+            var width = structElem.Attribute("width")?.Value;
+            if (!string.IsNullOrEmpty(length) && !string.IsNullOrEmpty(width))
+                return true;
+
+            // Check in structure description for rectangular indicators
+            var desc = structElem.Attribute("desc")?.Value?.ToUpper() ?? "";
+            if (desc.Contains("RECTANGULAR") || desc.Contains("RECT") || desc.Contains("SQUARE"))
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determine structure type based on shape, name, and description
+        /// Rectangular structures are automatically classified as catch basins
+        /// </summary>
+        private string DetermineStructureType(string name, string description, bool isRectangular)
         {
             name = name.ToUpper();
             description = description.ToUpper();
 
+            // Priority 1: Rectangular structures are catch basins
+            if (isRectangular)
+                return "CatchBasin";
+
+            // Priority 2: Check name and description patterns
             if (name.Contains("MH") || description.Contains("MANHOLE"))
                 return "Manhole";
             if (name.Contains("INLET") || description.Contains("INLET"))
